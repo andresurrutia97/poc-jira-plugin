@@ -1,0 +1,48 @@
+modules:
+  jira:projectPage:
+    - key: poc-plugin-hello-world-project-page
+      resource: main
+      resolver:
+        function: resolver
+      title: UruQa
+  jira:issuePanel:
+    - key: todo-panel
+      resource: issue
+      resolver:
+        function: formResolver
+      title: Test details
+      tooltip: Creates test cases
+      icon: https://developer.atlassian.com/platform/forge/images/issue-panel-icon.svg
+      # displayConditions:
+      #   issueType: uruTest
+  jira:issueAction:
+    - key: qa-demo-validator-glance
+      function: copyIssue
+      title: Copy issue
+  trigger:
+    - key: issue-created-event
+      function: trigger-event
+      events:
+        - avi:jira:created:issue
+  function:
+    - key: resolver
+      handler: index.handler
+    - key: formResolver
+      handler: test.handler
+    - key: copyIssue
+      handler: index.copyIssue
+    - key: trigger-event
+      handler: index.run
+resources:
+  - key: main
+    path: static/hello-world/build
+  - key: issue
+    path: static/test-form/build
+app:
+  id: ari:cloud:ecosystem::app/9e30b0e5-1015-407e-b80d-14700c4ac208
+permissions:
+  scopes:
+    - "write:jira-work"
+    - "read:jira-work"
+    - "manage:jira-configuration"
+    - "storage:app"
