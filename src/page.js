@@ -22,12 +22,4 @@ resolver.define("GET events", async () => {
   return data;
 });
 
-export async function run(event, context) {
-  console.log("Hello World!");
-}
-
-export async function copyIssue(event, context) {
-  console.log("Hello World!");
-}
-
 export const handler = resolver.getDefinitions();
