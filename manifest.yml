@@ -33,3 +33,8 @@ permissions:
     - "read:jira-work"
     - "manage:jira-configuration"
     - "storage:app"
+  content:
+    styles:
+      - "unsafe-inline"
+    scripts:
+      - "unsafe-inline"
