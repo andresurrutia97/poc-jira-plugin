@@ -1,8 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { invoke } from "@forge/bridge";
 
-import TestItem from "./TestItem";
-import TestItemForm from "./TestItemForm";
+import TestItem from "../components/Test/TestItem";
+import TestItemForm from "../components/Test/TestItemForm";
+import Spinner from "../components/Spinner";
+
+const FullTd = ({ children }) => (
+  <tr>
+    <td colspan="4">{children}</td>
+  </tr>
+);
 
 const TestPanel = () => {
   const [tests, setTests] = useState([]);
@@ -35,7 +42,18 @@ const TestPanel = () => {
   };
 
   const renderTests = () => {
-    if (!tests?.length) return;
+    if (isLoading)
+      return (
+        <FullTd>
+          <Spinner />
+        </FullTd>
+      );
+    if (!tests.length)
+      return (
+        <FullTd>
+          Add new test steps, test data and expected results bellow
+        </FullTd>
+      );
 
     return tests.map((test) => (
       <TestItem test={test} onDelete={handleDelete} />
@@ -51,14 +69,8 @@ const TestPanel = () => {
           <th>Expected Result</th>
           <th></th>
         </tr>
-        {isLoading ? (
-          <span>Loading...</span>
-        ) : (
-          <>
-            {renderTests()}
-            <TestItemForm onAdd={handleAdd} />
-          </>
-        )}
+        {renderTests()}
+        <TestItemForm onAdd={handleAdd} />
       </table>
     </>
   );
