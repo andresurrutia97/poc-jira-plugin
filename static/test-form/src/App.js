@@ -1,6 +1,6 @@
 import React from "react";
 
-import TestPanel from "./components/TestPanel";
+import TestPanel from "./views/TestPanel";
 
 function App() {
   return <TestPanel />;

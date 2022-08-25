@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, useReducer } from "react";
+import Button from "@atlaskit/button";
 
-import Input from "./Input";
+import Input from "../Input";
 
 const TestItemForm = ({ onAdd }) => {
   const initialState = { step: "", data: "", result: "" };
@@ -60,10 +61,10 @@ const TestItemForm = ({ onAdd }) => {
           }
         />
       </td>
-      <td>
-        <button onClick={handleAdd} disabled={!isValid}>
+      <td className="flex justify-center">
+        <Button onClick={handleAdd} appearance="primary" isDisabled={!isValid}>
           Add
-        </button>
+        </Button>
       </td>
     </tr>
   );
