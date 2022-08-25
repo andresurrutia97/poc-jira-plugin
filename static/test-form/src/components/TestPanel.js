@@ -34,19 +34,6 @@ const TestPanel = () => {
     await handleRequestLife("delete", { id });
   };
 
-  const handleCopy = async () => {
-    const res = await invoke("copy-issue");
-
-    const {
-      key,
-      fields: { summary },
-    } = res;
-
-    const issue = `${key}: ${summary}`;
-
-    navigator.clipboard.writeText(issue);
-  };
-
   const renderTests = () => {
     if (!tests?.length) return;
 
@@ -57,8 +44,7 @@ const TestPanel = () => {
 
   return (
     <>
-      <button onClick={handleCopy}>copy</button>
-      {/* <table>
+      <table>
         <tr>
           <th>Test Step</th>
           <th>TestData</th>
@@ -73,7 +59,7 @@ const TestPanel = () => {
             <TestItemForm onAdd={handleAdd} />
           </>
         )}
-      </table> */}
+      </table>
     </>
   );
 };

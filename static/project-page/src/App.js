@@ -1,9 +1,9 @@
 import React from "react";
 
-import Test from "./components/Test";
+import Issues from "./views/Issues";
 
 function App() {
-  return <Test />;
+  return <Issues />;
 }
 
 export default App;
