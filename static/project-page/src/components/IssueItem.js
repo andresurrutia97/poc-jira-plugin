@@ -6,7 +6,7 @@ const IssueItem = ({ issue }) => {
     fields: {
       assignee,
       issuetype: { name: issueName },
-      reporter: { displayName },
+      reporter: { displayName: reporterName },
       summary,
       status: { name: statusName },
     },
@@ -19,8 +19,8 @@ const IssueItem = ({ issue }) => {
         <a>{key}</a>
       </td>
       <td>{summary}</td>
-      <td>{assignee || "Unassigned"}</td>
-      <td>{displayName}</td>
+      <td>{assignee ? assignee.displayName : "Unassigned"}</td>
+      <td>{reporterName}</td>
       <td>{statusName}</td>
     </tr>
   );
